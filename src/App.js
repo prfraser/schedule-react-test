@@ -15,6 +15,12 @@ class App extends Component {
     ]
   }
 
+  matchEvents = (day) => {
+    return this.state.events.filter(event => {
+      return event.day === day
+    })
+  }
+
   createWeek = () => {
     const today = new Date();
     const week = []
@@ -27,11 +33,11 @@ class App extends Component {
   }
 
   render() {
-    const { week, events } = this.state;
+    const { week } = this.state;
     return (
       <div className="App">
         { 
-          week.map(day => <TitleDate day={day} events={events} />)
+          week.map(day => <TitleDate day={day} events={this.matchEvents(day)} />)
         }
       </div>
     );
